@@ -4,6 +4,8 @@
 /storage/*.key
 /vendor
 /z_docs
+/public/js/app.js
+/public/css/app.css
 .env
 .phpunit.result.cache
 Homestead.json

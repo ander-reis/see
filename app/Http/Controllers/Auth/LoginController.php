@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace See\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
+use See\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Adldap\Laravel\Facades\Adldap;
+use See\Models\User;
 
 class LoginController extends Controller
 {
@@ -66,12 +67,12 @@ class LoginController extends Controller
         if(Adldap::auth()->attempt($userdn, $password, $bindAsUser = true)) {
             // the user exists in the LDAP server, with the provided password
 
-            $user = \App\User::where($this->username(), $username)->first();
+            $user = User::where($this->username(), $username)->first();
 
             if (!$user) {
                 // the user doesn't exist in the local database, so we have to create one
 
-                $user = new \App\User();
+                $user = new User();
                 $user->username = $username;
                 $user->password = '';
 
