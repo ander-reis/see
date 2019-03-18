@@ -3,9 +3,12 @@
 /public/storage
 /storage/*.key
 /vendor
+/z_docs
 .env
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.phpstorm.meta.php
+_ide_helper.php
