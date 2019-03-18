@@ -277,7 +277,7 @@ return [
 
         //'email' => 'userprincipalname',
         'username' => 'uid',
-        'name' => 'uid',
+        //'name' => 'name',
         //'phone' => 'telephonenumber',
     ],
 
