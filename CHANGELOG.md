@@ -12,7 +12,13 @@
 * **ide-helper** Responsável por criar os arquivos _ide_helper.php e .phpstorm.meta.php do php storm
 * **Laravel-lang** Responsável pela tradução do sistema
 * **NPM** rodar comando npm install, para instalar bibliotecas javascript
-* **fontawesome:** Instalação e integração
+* **fontawesome:** Instalação e integração bootstrap
+
+# [1.0.0](#) (10/04/2019)
+* **laravel-form-builder** Instalado form builder, gerenciador de formulários
+* **bootstrapper** Instalado e configurado gerenciador bootstrap
+* **laravel collective** Instalado e configurado gerenciador HTML, desinstalado form-builder e bootstrapper
+* **laravel ckeditor** Instalado e configurado ckeditor editor de texto HTML
 
 
 ### Características/Observações do Sistema

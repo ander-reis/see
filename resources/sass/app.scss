@@ -9,11 +9,24 @@
 @import '~bootstrap/scss/bootstrap';
 
 // FontAwesome
-$fa-font-path: "~font-awesome/fonts";
-@import "node_modules/font-awesome/scss/font-awesome.scss";
-@import "node_modules/font-awesome/scss/font-awesome";
+//$fa-font-path: "~font-awesome/fonts";
+//@import "node_modules/font-awesome/scss/font-awesome.scss";
+//@import "node_modules/font-awesome/scss/font-awesome";
+
+@import "~@fortawesome/fontawesome-free/css/solid.css";
+@import "~@fortawesome/fontawesome-free/css/fontawesome.min.css";
 
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+  color: white !important;
+  background-color: $yiq-text-dark;
+}
+
+.nav-pills .nav-item a {
+  color: #fff;
+  background-color: #ccc;
 }
