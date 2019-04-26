@@ -130,6 +130,9 @@ return [
         'attribute-name' => [
             'rule-name' => 'custom-message',
         ],
+        //'ema_see_ds_email' => [
+            //'min' => 'O valor do :attribute dever ser maior que R$ 300,00.',
+        //],
     ],
 
     /*
@@ -176,5 +179,11 @@ return [
         'year'                  => 'ano',
         'email'                 => 'e-mail',
         'remember'              => 'lembrar-se de mim',
+        'ema_see_ds_email'      => 'texto',
+        'ema_see_ds_tipo'       => 'tipo de envio',
+        'ema_see_ds_de'         => 'email de envio',
+        'ema_see_ds_exibir'     => 'exibir como',
+        'ema_see_ds_assunto'    => 'assunto do email',
+        'ema_see_ds_para'       => 'enviar para',
     ],
 ];

@@ -20,6 +20,8 @@
 * **laravel collective** Instalado e configurado gerenciador HTML, desinstalado form-builder e bootstrapper
 * **laravel ckeditor** Instalado e configurado ckeditor editor de texto HTML
 
+# [1.0.0](#) (17/04/2019)
+* **Toastr** Instalado toastr, gerenciador de toast para laravel
 
 ### Características/Observações do Sistema
 

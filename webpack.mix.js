@@ -15,5 +15,5 @@ mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css')
     .copy('node_modules/font-awesome/fonts', 'public/fonts');
 
-mix.browserSync('localhost:8000');
-// mix.browserSync('see.br');
+// mix.browserSync('localhost:8000');
+mix.browserSync('see.br');

@@ -3,6 +3,9 @@
 namespace See\Http\Controllers;
 
 use Illuminate\Http\Request;
+use See\Http\Requests\SeeRequest;
+use See\Models\Materia;
+use See\Models\TbEmailSee;
 
 class SeeController extends Controller
 {
@@ -13,7 +16,10 @@ class SeeController extends Controller
      */
     public function index()
     {
-        //
+        $materias = Materia::all();
+        $observacoes = TbEmailSee::all();
+
+        return view('see.create', compact('materias'));
     }
 
     /**
@@ -23,7 +29,7 @@ class SeeController extends Controller
      */
     public function create()
     {
-        //
+
     }
 
     /**
@@ -32,9 +38,13 @@ class SeeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SeeRequest $request)
     {
         dd($request->all());
+//        $model = TbEmailSee::all();
+//        dd($model);
+
+
     }
 
     /**

@@ -66,19 +66,15 @@ return [
     */
 
     'providers' => [
-        // 'users' => [
-        //     'driver' => 'eloquent',
-        //     'model' => See\User::class,
-        // ],
+        'users' => [
+            'driver' => 'eloquent', // was 'eloquent'
+            'model'  => \See\Models\User::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
-        'users' => [
-            'driver' => 'ldap', // was 'eloquent'
-            'model'  => See\User::class,
-        ],
     ],
 
     /*

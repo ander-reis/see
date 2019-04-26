@@ -23,14 +23,40 @@
         <div class="tab-content container" id="pills-tabContent">
             <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
 {{--                @component('components.tab-one')@endcomponent--}}
-                @component('components.tab-two')@endcomponent
+                @component('components.tab-three', ['observacoes' => $observacoes])@endcomponent
             </div>
             <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
                 @component('components.tab-two')@endcomponent
             </div>
             <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
-                @component('components.tab-three')@endcomponent
+                @component('components.tab-three', ['observacoes' => $observacoes])@endcomponent
             </div>
         </div>
+
+        @if($errors->any())
+            @foreach ($errors->all() as $error)
+                @php toastr()->error($error); @endphp
+            @endforeach
+
+            {{--<ul class="alert alert-danger">--}}
+                {{--@foreach($errors->all() as $error)--}}
+                    {{--<li>{{$error}}</li>--}}
+                {{--@endforeach--}}
+            {{--</ul>--}}
+        @endif
     </div>
 </div>
+
+@component('form-components._modal', ['title' => 'Matérias'])
+    <div class="row m-1" id="boxMaterias">
+        @foreach($materias as $materia)
+            @component('form-components._checkbox')
+                @slot('class')
+                    col-4
+                @endslot
+                {{ Form::checkbox('materias[]', $materia->Materia, false, ['class' => 'custom-control-input', 'id' => "materia-{$materia->Codigo_Materia}"]) }}
+                {{ Form::label("materia-{$materia->Codigo_Materia}", $materia->Materia, ['class' => 'custom-control-label']) }}
+            @endcomponent
+        @endforeach
+    </div>
+@endcomponent

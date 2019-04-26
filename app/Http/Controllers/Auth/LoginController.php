@@ -6,8 +6,6 @@ use See\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Adldap\Laravel\Facades\Adldap;
 use See\Models\User;
 
 class LoginController extends Controller
@@ -61,10 +59,21 @@ class LoginController extends Controller
         $username = $credentials[$this->username()];
         $password = $credentials['password'];
 
-        $user_format = env('LDAP_USER_FORMAT', 'cn=%s,'.env('LDAP_BASE_DN', ''));
-        $userdn = sprintf($user_format, $username);
+        $data = json_encode(array('user' => $username, 'pass' => $password));
 
-        if(Adldap::auth()->attempt($userdn, $password, $bindAsUser = true)) {
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+        curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
+        curl_setopt($curl, CURLOPT_URL, "http://api1.sinprosp.org.br/ldap/login");
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        $result = curl_exec($curl);
+        curl_close($curl);
+
+        $result = json_decode($result, true);
+
+        if ($result['code']) {
+
             // the user exists in the LDAP server, with the provided password
 
             $user = User::where($this->username(), $username)->first();
@@ -78,7 +87,7 @@ class LoginController extends Controller
 
                 // // you can skip this if there are no extra attributes to read from the LDAP server
                 // // or you can move it below this if(!$user) block if you want to keep the user always
-                // // in sync with the LDAP server 
+                // // in sync with the LDAP server
 
                 // $sync_attrs = $this->retrieveSyncAttributes($username);
 
@@ -97,71 +106,5 @@ class LoginController extends Controller
         // the user doesn't exist in the LDAP server or the password is wrong
         // log error
         return false;
-    }
-
-    protected function retrieveSyncAttributes($username)
-    {
-        echo env('LDAP_USER_ATTRIBUTE');
-
-        $ldapuser = Adldap::search()->where(env('LDAP_USER_ATTRIBUTE'), '=', $username)->first();
-        if ( !$ldapuser ) {
-            // log error
-            return false;
-        }
-        // if you want to see the list of available attributes in your specific LDAP server:
-        var_dump($ldapuser->attributes);die;
-
-        // needed if any attribute is not directly accessible via a method call.
-        // attributes in \Adldap\Models\User are protected, so we will need
-        // to retrieve them using reflection.
-        $ldapuser_attrs = null;
-
-        $attrs = [];
-
-        foreach (config('ldap_auth.sync_attributes') as $local_attr => $ldap_attr) {
-            if ( $local_attr == 'username' ) {
-                continue;
-            }
-
-            $method = 'get' . $ldap_attr;
-            if (method_exists($ldapuser, $method)) {
-                $attrs[$local_attr] = $ldapuser->$method();
-                continue;
-            }
-
-            if ($ldapuser_attrs === null) {
-                $ldapuser_attrs = self::accessProtected($ldapuser, 'attributes');
-            }
-
-            if (!isset($ldapuser_attrs[$ldap_attr])) {
-                // an exception could be thrown
-                $attrs[$local_attr] = null;
-                continue;
-            }
-
-            if (!is_array($ldapuser_attrs[$ldap_attr])) {
-                $attrs[$local_attr] = $ldapuser_attrs[$ldap_attr];
-            }
-
-            if (count($ldapuser_attrs[$ldap_attr]) == 0) {
-                // an exception could be thrown
-                $attrs[$local_attr] = null;
-                continue;
-            }
-
-            // now it returns the first item, but it could return
-            // a comma-separated string or any other thing that suits you better
-            $attrs[$local_attr] = $ldapuser_attrs[$ldap_attr][0];
-            //$attrs[$local_attr] = implode(',', $ldapuser_attrs[$ldap_attr]);
-        }
-        return $attrs;
-    }
-
-    protected static function accessProtected ($obj, $prop)
-    {
-        $reflection = new \ReflectionClass($obj);
-        $property = $reflection->getProperty($prop);
-        $property->setAccessible(true);
-        return $property->getValue($obj);
     }
 }

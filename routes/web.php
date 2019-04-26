@@ -22,4 +22,4 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('see', 'SeeController')->middleware('auth');
+Route::resource('see', 'SeeController', ['except' => 'index'])->middleware('auth');

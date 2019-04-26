@@ -85,6 +85,21 @@ return [
             'prefix_indexes' => true,
         ],
 
+        'sqlsrv-sinpro' => [
+            'driver' => 'sqlsrv',
+            'host' => env('DB_HOST_SQLSRV_SINPRO', 'localhost'),
+            'port' => env('DB_PORT_SQLSRV_SINPRO', '1433'),
+            'database' => env('DB_DATABASE_SQLSRV_SINPRO', 'forge'),
+            'username' => env('DB_USERNAME_SQLSRV_SINPRO', 'forge'),
+            'password' => env('DB_PASSWORD_SQLSRV_SINPRO', ''),
+            'charset' => 'utf8',
+            'prefix' => '',
+            'options' => [
+                PDO::ATTR_STRINGIFY_FETCHES => false,
+                PDO::SQLSRV_ATTR_FETCHES_NUMERIC_TYPE => true
+            ]
+        ],
+
     ],
 
     /*

@@ -3,6 +3,8 @@
 namespace See\Http\Controllers;
 
 use Illuminate\Http\Request;
+use See\Models\Materia;
+use See\Models\TbEmailSee;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('see.create');
+        $materias = Materia::all();
+        $observacoes = TbEmailSee::all();
+
+        return view('see.create', compact('materias', 'observacoes'));
     }
 }
