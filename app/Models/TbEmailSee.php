@@ -24,4 +24,10 @@ class TbEmailSee extends Model
         'ema_see_ds_email'
     ];
 
+    const CREATED_AT = 'ema_see_dt_cadastro';
+
+    const UPDATED_AT = false;
+
+//    public $timestamps = false;
+
 }

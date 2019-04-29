@@ -16,10 +16,7 @@ class SeeController extends Controller
      */
     public function index()
     {
-        $materias = Materia::all();
-        $observacoes = TbEmailSee::all();
 
-        return view('see.create', compact('materias'));
     }
 
     /**
@@ -40,11 +37,9 @@ class SeeController extends Controller
      */
     public function store(SeeRequest $request)
     {
-        dd($request->all());
-//        $model = TbEmailSee::all();
-//        dd($model);
-
-
+        $data = $request->all();
+        TbEmailSee::create($data);
+        return view('see.create');
     }
 
     /**
@@ -90,5 +85,10 @@ class SeeController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function enviarTeste()
+    {
+
     }
 }

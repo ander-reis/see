@@ -22,4 +22,5 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('see', 'SeeController', ['except' => 'index'])->middleware('auth');
+Route::resource('see', 'SeeController', ['except' => 'create'])->middleware('auth');
+//Route::get('/enviar-teste', 'SeeController@enviarTeste');

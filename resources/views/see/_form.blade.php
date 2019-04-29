@@ -22,8 +22,8 @@
         </ul>
         <div class="tab-content container" id="pills-tabContent">
             <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
-{{--                @component('components.tab-one')@endcomponent--}}
-                @component('components.tab-three', ['observacoes' => $observacoes])@endcomponent
+                @component('components.tab-one')@endcomponent
+{{--                @component('components.tab-three', ['observacoes' => $observacoes])@endcomponent--}}
             </div>
             <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
                 @component('components.tab-two')@endcomponent
@@ -37,12 +37,6 @@
             @foreach ($errors->all() as $error)
                 @php toastr()->error($error); @endphp
             @endforeach
-
-            {{--<ul class="alert alert-danger">--}}
-                {{--@foreach($errors->all() as $error)--}}
-                    {{--<li>{{$error}}</li>--}}
-                {{--@endforeach--}}
-            {{--</ul>--}}
         @endif
     </div>
 </div>
