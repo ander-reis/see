@@ -47,8 +47,5 @@
             @endforeach
             </tbody>
         </table>
-
-        {{--{{ dd($observacoes) }}--}}
-
     </div>
 </div>

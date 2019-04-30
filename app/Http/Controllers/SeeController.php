@@ -4,7 +4,7 @@ namespace See\Http\Controllers;
 
 use Illuminate\Http\Request;
 use See\Http\Requests\SeeRequest;
-use See\Models\Materia;
+use See\Mail\EmailBoletim;
 use See\Models\TbEmailSee;
 
 class SeeController extends Controller
@@ -32,20 +32,48 @@ class SeeController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(SeeRequest $request)
     {
-        $data = $request->all();
-        TbEmailSee::create($data);
-        return view('see.create');
+        try {
+            $data = $request->all();
+
+            if (isset($data['ema_see_ds_copia'])) {
+                $data['ema_see_ds_copia'] = implode($data['ema_see_ds_copia'], ',');
+            }
+
+            if (isset($data['ema_see_ds_para'])) {
+                $data['ema_see_ds_para'] = implode($data['ema_see_ds_para'], ',');
+            }
+
+            if (isset($data['materias'])) {
+                $data['materias'] = implode($data['materias'], ',');
+            }
+
+            $data['ema_see_ds_login'] = usernameUpper();
+
+            TbEmailSee::create($data);
+
+//        $result = TbEmailSee::create($data);
+
+//        if($result){
+//            \Mail::to($result->ema_see_ds_de)->send(new EmailBoletim($result));
+//        }
+
+            toastr()->success('Cadastro realizado com sucesso!');
+
+            return redirect()->route('home');
+        } catch (\Exception $exception) {
+            toastr()->error("erro: {$exception->getMessage()}");
+        }
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -56,7 +84,7 @@ class SeeController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -67,8 +95,8 @@ class SeeController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -79,7 +107,7 @@ class SeeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

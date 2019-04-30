@@ -22,16 +22,16 @@ $(document).ready(function () {
     function optDiversos() {
         $('#txtDe').prop('readonly', false);
         $('#txtExibir').prop('readonly', false);
-        $("input[type='checkbox']").prop('readonly', false);
-        $('#lblPara').prop('readonly', false);
+        $("input[type='checkbox']").prop('disabled', false);
+        $('#lblPara').prop('disabled', false);
         $('#txtParaLista').prop('readonly', false);
     }
 
     function optBoletim() {
         $('#txtDe').prop('readonly', true);
         $('#txtExibir').prop('readonly', true);
-        $("input[type='checkbox']").prop('readonly', true);
-        $('#lblPara').prop('readonly', true);
+        $("input[type='checkbox']").prop('disabled', true);
+        $('#lblPara').prop('disabled', true);
         $('#txtParaLista').prop('readonly', true);
     }
 

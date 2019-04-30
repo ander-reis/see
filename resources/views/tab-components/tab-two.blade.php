@@ -2,11 +2,11 @@
     {{ Form::label('lblIpo', 'Tipo de Envio:', ['class' => 'control-label']) }}
     <div class="radio{{$errors->has('ema_see_ds_tipo') ? ' text-danger' : ''}}">
         <div class="custom-control custom-radio custom-control-inline">
-            {{ Form::radio('ema_see_ds_tipo', 'diversos', true, ['class' => 'custom-control-input', 'id' => 'optDiversos']) }}
+            {{ Form::radio('ema_see_ds_tipo', 'Diversos', true, ['class' => 'custom-control-input', 'id' => 'optDiversos']) }}
             {{ Form::label('optDiversos', 'Diversos', ['class' => 'custom-control-label']) }}
         </div>
         <div class="custom-control custom-radio custom-control-inline">
-            {{ Form::radio('ema_see_ds_tipo', 'boletim', false, ['class' => 'custom-control-input', 'id' => 'optBoletim']) }}
+            {{ Form::radio('ema_see_ds_tipo', 'Boletim', false, ['class' => 'custom-control-input', 'id' => 'optBoletim']) }}
             {{ Form::label('optBoletim', 'Boletim', ['class' => 'custom-control-label']) }}
         </div>
     </div>
@@ -95,23 +95,21 @@
 <hr>
 
 <div class="row">
-    <div class="col-4">
-        @component('form-components._form_has_error', ['field' => 'ema_see_ds_para'])
-            {{ Form::label('lblPara', 'Enviar para:', ['class' => 'form-group']) }}
-            <select name="ema_see_ds_para[]" id="lblPara" class="custom-select" multiple>
-                <option value="sesi">SESI</option>
-                <option value="senai">SENAI</option>
-                <option value="senac">SENAC</option>
-                <option value="basico">B&aacute;sico</option>
-                <option value="superior">Superior</option>
-                <option value="escbasico">Escola - B&aacute;sico</option>
-                <option value="escsuperior">Escola - Superior</option>
-                <option data-toggle="modal" data-target="#materias" value="materia">Mat&eacute;ria</option>
-                <option value="sql">SQL</option>
-                <option value="tabela">E-mails na tabela</option>
-            </select>
-        @endcomponent
-    </div>
+    @component('form-components._form_has_error', ['field' => 'ema_see_ds_para'])
+        {{ Form::label('lblPara', 'Enviar para:', ['class' => 'form-group']) }}
+        <select name="ema_see_ds_para[]" id="lblPara" class="custom-select" multiple>
+            <option value="sesi">SESI</option>
+            <option value="senai">SENAI</option>
+            <option value="senac">SENAC</option>
+            <option value="basico">B&aacute;sico</option>
+            <option value="superior">Superior</option>
+            <option value="escbasico">Escola - B&aacute;sico</option>
+            <option value="escsuperior">Escola - Superior</option>
+            <option data-toggle="modal" data-target="#materias" value="materia">Mat&eacute;ria</option>
+            <option value="sql">SQL</option>
+            <option value="tabela">E-mails na tabela</option>
+        </select>
+    @endcomponent
 
     <div class="col-8">
         <div class="form-group">
