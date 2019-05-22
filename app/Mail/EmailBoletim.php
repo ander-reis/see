@@ -5,7 +5,6 @@ namespace See\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use See\Models\TbEmailSee;
 
 class EmailBoletim extends Mailable
@@ -21,9 +20,9 @@ class EmailBoletim extends Mailable
      *
      * @return void
      */
-    public function __construct(TbEmailSee $tbEmailSee)
+    public function __construct(array $data)
     {
-        $this->tbEmailSee = $tbEmailSee;
+        $this->tbEmailSee = $data;
     }
 
     /**

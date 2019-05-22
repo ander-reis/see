@@ -23,6 +23,8 @@ class SeeRequest extends FormRequest
      */
     public function rules()
     {
+        $this->sanitize();
+
         return [
             'ema_see_ds_email' => 'required|min:20',
             'ema_see_ds_tipo' => 'required',
@@ -30,10 +32,6 @@ class SeeRequest extends FormRequest
             'ema_see_ds_exibir' => 'required',
             'ema_see_ds_assunto' => 'required',
             'ema_see_ds_para' => 'required',
-
-//            'ema_see_ds_lista' => '',
-//            'ema_see_ds_copia' => '',
-//            'materias' => '',
         ];
     }
 

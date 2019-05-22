@@ -22,9 +22,8 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('see', 'SeeController')->middleware('auth');
-//Route::get('/enviar-teste', 'SeeController@enviarTeste');
+Route::resource('see', 'SeeController', ['only' => ['store', 'show', 'edit', 'update', 'destroy']])->middleware('auth');
 
-//Route::get('/email/{id}', function($id){
-//
-//});
+Route::post('/email-teste', 'EmailTeste@enviarEmailTeste')->name('email-teste');
+
+Route::post('/cancelar-envio', 'SeeController@cancelarEnvio')->name('cancelar-envio');

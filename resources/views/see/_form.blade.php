@@ -22,11 +22,30 @@
         </ul>
         <div class="tab-content container" id="pills-tabContent">
             <div class="tab-pane fade show active" id="tab-one" role="tabpanel" aria-labelledby="tab-one">
-                @component('tab-components.tab-one')@endcomponent
-{{--                @component('tab-components.tab-three', ['observacoes' => $observacoes])@endcomponent--}}
+                @component('tab-components.tab-one')
+                    <div class="mt-3 float-right col-4">
+                        <button type="button" id="btnLimparTexto" class="btn btn-block btn-warning">Limpar</button>
+                    </div>
+                @endcomponent
             </div>
             <div class="tab-pane fade" id="tab-two" role="tabpanel" aria-labelledby="tab-two">
-                @component('tab-components.tab-two')@endcomponent
+                @component('tab-components.tab-two', ['enviarCopia' => $enviarCopia, 'selectOption' => $selectOption])
+                    <div class="row">
+                        <div class="col-4">
+                            <button type="button" data-toggle="modal" data-target="#emailTeste" id="btnEnviarTeste"
+                                    class="btn btn-block btn-outline-secondary">Enviar Teste
+                            </button>
+                        </div>
+                        <div class="col-4">
+                            <button type="submit" class="btn btn-block btn-primary">Agendar Envio</button>
+                        </div>
+                        <div class="col-4">
+                            <button type="button" id="btnLimparForm" class="btn btn-block btn-warning"
+                                    onclick="btnLimparForm()">Limpar
+                            </button>
+                        </div>
+                    </div>
+                @endcomponent
             </div>
             <div class="tab-pane fade" id="tab-three" role="tabpanel" aria-labelledby="tab-three">
                 @component('tab-components.tab-three', ['observacoes' => $observacoes])@endcomponent
@@ -36,22 +55,8 @@
         {{--TOAST ERROR--}}
         @if($errors->any())
             @foreach ($errors->all() as $error)
-                @php toastr()->error($error); @endphp
+                {{ toastr()->error($error) }}
             @endforeach
         @endif
     </div>
 </div>
-
-@component('form-components._modal', ['title' => 'Matérias'])
-    <div class="row m-1" id="boxMaterias">
-        @foreach($materias as $materia)
-            @component('form-components._checkbox')
-                @slot('class')
-                    col-4
-                @endslot
-                {{ Form::checkbox('materias[]', $materia->Materia, false, ['class' => 'custom-control-input', 'id' => "materia-{$materia->Codigo_Materia}"]) }}
-                {{ Form::label("materia-{$materia->Codigo_Materia}", $materia->Materia, ['class' => 'custom-control-label']) }}
-            @endcomponent
-        @endforeach
-    </div>
-@endcomponent

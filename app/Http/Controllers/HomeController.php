@@ -2,7 +2,6 @@
 
 namespace See\Http\Controllers;
 
-use Illuminate\Http\Request;
 use See\Models\Materia;
 use See\Models\TbEmailSee;
 
@@ -26,8 +25,10 @@ class HomeController extends Controller
     public function index()
     {
         $materias = Materia::all();
-        $observacoes = TbEmailSee::all();
+        $observacoes = TbEmailSee::orderBy('ema_see_cd_observacao', 'desc')->get();
+        $enviarCopia = TbEmailSee::checkboxOption();
+        $selectOption = TbEmailSee::selectOption();
 
-        return view('see.create', compact('materias', 'observacoes'));
+        return view('see.create', compact('materias', 'observacoes', 'enviarCopia', 'selectOption'));
     }
 }
