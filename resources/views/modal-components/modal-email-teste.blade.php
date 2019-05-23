@@ -5,6 +5,7 @@
     @endcomponent
     {{ Form::hidden('teste_see_ds_email') }}
     {{ Form::hidden('teste_see_ds_de') }}
+    {{ Form::hidden('teste_see_ds_assunto') }}
     @slot('footer')
         <button type="button" id="enviarEmailTeste" class="btn btn-secondary">Enviar</button>
     @endslot

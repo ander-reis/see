@@ -27,6 +27,7 @@ class SeeEmailTesteRequest extends FormRequest
             'teste_see_ds_email_teste' => 'required',
             'teste_see_ds_email' => 'required|min:20',
             'teste_see_ds_de' => 'required|email',
+            'teste_see_ds_assunto' => 'required'
         ];
     }
 }

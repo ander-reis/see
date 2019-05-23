@@ -49,12 +49,15 @@ $(document).ready(function () {
     $('#de').click(() => {
         let email = $('#txtEmail').val();
         let de = $('#txtDe').val();
+        let assunto = $('#txtAssunto').val();
+        console.log(assunto);
         if (email.length <= 20) {
             $('#btnEnviarTeste').prop('disabled', true);
         } else {
             $('#btnEnviarTeste').prop('disabled', false);
             $("[name='teste_see_ds_email']").val(email);
             $("[name='teste_see_ds_de']").val(de);
+            $("[name='teste_see_ds_assunto']").val(assunto);
         }
     });
 
@@ -82,7 +85,8 @@ $(document).ready(function () {
             data: {
                 teste_see_ds_email_teste: $('#txtEmailTeste').val(),
                 teste_see_ds_email: $('#txtEmail').val(),
-                teste_see_ds_de: $('#txtDe').val()
+                teste_see_ds_de: $('#txtDe').val(),
+                teste_see_ds_assunto: $('#txtAssunto').val(),
             },
             success: function (result) {
                 if (result) {

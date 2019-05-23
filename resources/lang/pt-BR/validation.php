@@ -187,6 +187,7 @@ return [
         'ema_see_ds_para'       => 'enviar para',
         'teste_see_ds_email_teste'   => 'e-mail de teste',
         'teste_see_ds_de'       => 'e-mail de envio',
-        'ema_see_cd_observacao' => 'id'
+        'teste_see_ds_assunto' => 'assunto do email',
+        'ema_see_cd_observacao' => 'id',
     ],
 ];

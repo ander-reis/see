@@ -24,7 +24,7 @@ class EmailBoletim extends Mailable
     {
         $this->tbEmailSee = $data;
     }
-
+    
     /**
      * Build the message.
      *
@@ -32,6 +32,6 @@ class EmailBoletim extends Mailable
      */
     public function build()
     {
-        return $this->view('email.boletim');
+        return $this->from($this->tbEmailSee['teste_see_ds_de'])->subject($this->tbEmailSee['teste_see_ds_assunto'])->view('email.boletim');
     }
 }
