@@ -141,7 +141,7 @@ class SeeController extends Controller
             /**
              * redirect view
              */
-            return redirect()->route('home');
+            return redirect()->route('home')->withInput(['pill' => 'tab-three']);
         } catch (\Exception $exception) {
             /**
              * alert message toast error

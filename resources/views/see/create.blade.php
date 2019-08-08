@@ -3,7 +3,7 @@
 @section('content')
     {{-- ************** formulario tabs ************** --}}
     {{ Form::open(['route' => 'see.store']) }}
-    @include('see._form', ['enviarCopia' => $enviarCopia, 'observacoes' => $observacoes])
+    @include('see._tab_form', ['enviarCopia' => $enviarCopia, 'observacoes' => $observacoes])
 
     {{-- ************** component modal materias ************** --}}
     @include('modal-components.modal-materias', ['materias' => $materias])
