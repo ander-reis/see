@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Yoeunes\Toastr\ToastrServiceProvider::class,
+        Unisharp\Ckeditor\ServiceProvider::class,
 
         /*
          * Application Service Providers...
