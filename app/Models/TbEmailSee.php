@@ -54,7 +54,7 @@ class TbEmailSee extends Model
      */
     public function getDtEnvioFormattedAttribute()
     {
-        return (new \DateTime($this->ema_see_dt_envio))->format('d/m/Y H:m');
+        return (new \DateTime($this->ema_see_dt_inicio))->format('d/m/Y H:i');
     }
 
     /**

@@ -141,7 +141,7 @@ class SeeController extends Controller
             /**
              * redirect view
              */
-            return redirect()->route('home')->withInput(['pill' => 'tab-three']);
+            return $this->voltar();
         } catch (\Exception $exception) {
             /**
              * alert message toast error
@@ -188,6 +188,14 @@ class SeeController extends Controller
 
             return back();
         }
+    }
+
+    /**
+     * Método responsável por voltar a lista de observações
+     */
+    public function voltar()
+    {
+        return redirect()->route('home')->withInput(['pill' => 'tab-three']);
     }
 
     /**

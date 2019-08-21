@@ -25,7 +25,7 @@ class HomeController extends Controller
     public function index()
     {
         $materias = Materia::all();
-        $observacoes = TbEmailSee::orderBy('ema_see_cd_observacao', 'desc')->get();
+        $observacoes = TbEmailSee::whereRaw('ema_see_fl_status <> 9')->orderBy('ema_see_cd_observacao', 'desc')->get();
         $enviarCopia = TbEmailSee::checkboxOption();
         $selectOption = TbEmailSee::selectOption();
 
