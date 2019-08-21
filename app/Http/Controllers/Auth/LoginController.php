@@ -42,7 +42,6 @@ class LoginController extends Controller
 
     public function username()
     {
-//        return config('ldap_auth.usernames.eloquent');
         return 'username';
     }
 
