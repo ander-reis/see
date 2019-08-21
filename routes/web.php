@@ -22,7 +22,7 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('see', 'SeeController', ['only' => ['store', 'show', 'edit', 'update', 'destroy']])->middleware('auth');
+Route::resource('see', 'SeeController')->middleware('auth');
 
 Route::post('/email-teste', 'EmailTeste@enviarEmailTeste')->name('email-teste');
 
